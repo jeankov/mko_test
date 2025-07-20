@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D8E36E32-75A9-4816-A0D5-B156CEAF661C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="main_project\mko_test.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="mko_first\mko_first.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mko_test">
+        <MSBuild Projects="main_project\mko_test.dproj"/>
+    </Target>
+    <Target Name="mko_test:Clean">
+        <MSBuild Projects="main_project\mko_test.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mko_test:Make">
+        <MSBuild Projects="main_project\mko_test.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="mko_first">
+        <MSBuild Projects="mko_first\mko_first.dproj"/>
+    </Target>
+    <Target Name="mko_first:Clean">
+        <MSBuild Projects="mko_first\mko_first.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mko_first:Make">
+        <MSBuild Projects="mko_first\mko_first.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mko_test;mko_first"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mko_test:Clean;mko_first:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mko_test:Make;mko_first:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
