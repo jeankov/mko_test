@@ -38,6 +38,11 @@
 #iOSDevice64/
 #Linux64/
 
+*.jdbg
+*.skincfg
+*.res
+*.txt
+
 # Delphi compiler-generated binaries (safe to delete)
 *.exe
 *.dll
